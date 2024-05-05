@@ -3,17 +3,21 @@ val logbackVersion: String by project
 val ktorVersion: String by project
 
 plugins {
+    application
     kotlin("jvm") version "1.9.23"
     kotlin("plugin.serialization") version "1.9.23"
+    id("io.ktor.plugin") version "3.0.0-beta-1"
 }
 
 group = "dev.lythium"
 version = "1.0-SNAPSHOT"
 
+application {
+    mainClass.set("dev.lythium.MainKt")
+}
+
 repositories {
     mavenCentral()
-    google()
-    maven("https://oss.sonatype.org/content/repositories/ksoap2-android-releases/")
 }
 
 dependencies {
@@ -31,9 +35,12 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktorVersion")
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
 kotlin {
     jvmToolchain(21)
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("platform-backend.jar")
+    }
 }

@@ -1,6 +1,6 @@
 package Routes
 
-import CRSCodes
+import Stations
 import dev.lythium.App.ldbws
 import io.ktor.http.*
 import io.ktor.server.response.*
@@ -24,7 +24,7 @@ fun Route.arrivalDeparture() {
 					return@get call.respondText("CRS must be 3 characters long.", status = HttpStatusCode.BadRequest)
 				}
 
-				if (CRSCodes.get(crs).isValid == false) {
+				if (Stations.getStation(crs = crs) == null) {
 					return@get call.respondText("Invalid CRS code.", status = HttpStatusCode.BadRequest)
 				}
 

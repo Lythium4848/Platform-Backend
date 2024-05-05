@@ -44,3 +44,4 @@ bin/
 app.log
 .env
 docs
+stations.txt

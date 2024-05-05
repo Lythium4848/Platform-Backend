@@ -2,7 +2,6 @@ package dev.lythium
 
 import LDBWS
 import Routes.*
-import dev.lythium.App.ldbws
 import io.github.cdimascio.dotenv.Dotenv
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
@@ -10,7 +9,6 @@ import io.ktor.server.application.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.cors.routing.*
 import io.ktor.server.plugins.ratelimit.*
-import io.ktor.server.request.*
 import io.ktor.server.resources.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -19,7 +17,7 @@ import kotlin.time.Duration.Companion.seconds
 
 
 object App {
-	val dotenv = Dotenv.load();
+	val dotenv = Dotenv.load()
 	val ldbws = LDBWS(
 		apiKeyArrDep = dotenv.get("API_KEY_ARR_DEP"),
 		apiKeyArr = dotenv.get("API_KEY_ARR"),

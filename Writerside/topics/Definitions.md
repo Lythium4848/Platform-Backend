@@ -1,3 +1,0 @@
-# Definitions
-
-Start typing here...

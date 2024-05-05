@@ -1,18 +1,20 @@
 package Definitions
 
 import Enums.UncertantyType
+import kotlinx.serialization.Serializable
 
+@Serializable
 class CallingPoint(
 	val locationName: String,
 	val crs: String,
 	val st: String,
-	val et: String,
-	val at: String,
+	val et: String? = null,
+	val at: String? = null,
 	val isCancelled: Boolean,
-	val length: Int,
-	val detachFront: Boolean,
+	val length: Int? = 0,
+	val detachFront: Boolean = false,
 	val adhocAlerts: List<String>? = null,
-	val uncertanty: UncertantyType,
+	val uncertanty: UncertantyType? = null,
 	val affectedBy: String? = null,
 
 )

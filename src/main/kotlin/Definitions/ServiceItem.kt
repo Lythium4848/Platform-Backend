@@ -1,5 +1,8 @@
 package Definitions
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 class ServiceItem(
 	val origin: List<ServiceLocation>, // TODO: List of ServiceLocation's giving original origins of the service
 	val destination: List<ServiceLocation>, // TODO: List of ServiceLocation's giving final destination of the service

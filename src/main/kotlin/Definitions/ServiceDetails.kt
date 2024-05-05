@@ -1,5 +1,14 @@
 package Definitions
 
+import kotlinx.serialization.Serializable
+
+@Serializable
+class ServiceDetailsCoaches(
+	val coaches: List<CoachData>? = null
+)
+
+
+@Serializable
 class ServiceDetails(
 	val generatedAt: String,
 	val rsid: String? = null,
@@ -23,7 +32,7 @@ class ServiceDetails(
 	val std: String? = null,
 	val atd: String? = null,
 	val adhocAlerts: List<String>? = null,
-	val previousCallingPoints: List<CallingPoint>? = null, // List of ServiceLocation's giving previous calling points of the service
-	val subsequentCallingPoints: List<CallingPoint>? = null, // List of ServiceLocation's giving subsequent calling points of the service
-	val formation: List<CallingPoint>? = null, // List of ServiceLocation's giving formation of the service
+	val previousCallingPoints: List<ServiceItemWithCallingPointsPreviousCallingPoints>? = null,
+	val subsequentCallingPoints: List<ServiceItemWithCallingPointsSubsequentCallingPoints>? = null,
+	val formation: ServiceDetailsCoaches? = null
 ) {}

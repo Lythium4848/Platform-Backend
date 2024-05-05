@@ -1,5 +1,24 @@
 package Definitions
 
+import kotlinx.serialization.Serializable
+
+@Serializable
+class ServiceItemWithCallingPointsPreviousCallingPoints(
+	val callingPoint: List<CallingPoint>? = null,
+	val serviceType: String,
+	val serviceChangeRequired: Boolean,
+	val assocIsCancelled: Boolean,
+)
+
+@Serializable
+class ServiceItemWithCallingPointsSubsequentCallingPoints(
+	val callingPoint: List<CallingPoint>? = null,
+	val serviceType: String,
+	val serviceChangeRequired: Boolean,
+	val assocIsCancelled: Boolean,
+)
+
+@Serializable
 class ServiceItemWithCallingPoints(
 	val origin: List<ServiceLocation>,
 	val destination: List<ServiceLocation>,
@@ -23,8 +42,8 @@ class ServiceItemWithCallingPoints(
 	val delayReason: String? = null,
 	val serviceID: String,
 	val adhocAlerts: List<String>? = null,
-	val previousCallingPoints: List<CallingPoint>? = null, // List of ServiceLocation's giving previous calling points of the service
-	val subsequentCallingPoints: List<CallingPoint>? = null, // List of ServiceLocation's giving subsequent calling points of the service
+	val previousCallingPoints: List<ServiceItemWithCallingPointsPreviousCallingPoints>? = null,
+	val subsequentCallingPoints: List<ServiceItemWithCallingPointsSubsequentCallingPoints>? = null,
 	val uncertantyType: UncertaintyType? = null,
 	val affectedBy: List<String>? = null,
 ) {}

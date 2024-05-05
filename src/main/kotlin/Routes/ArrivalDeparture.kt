@@ -1,5 +1,7 @@
 package Routes
 
+import CRSCodes
+import CRSReturn
 import dev.lythium.App.ldbws
 import io.ktor.http.*
 import io.ktor.server.response.*
@@ -14,11 +16,20 @@ fun Route.arrivalDeparture() {
 					status = HttpStatusCode.BadRequest
 				)
 
+				val filterCRS = call.parameters["filterCRS"] ?: ""
+				val filterType = call.parameters["filterType"] ?: ""
+				val timeOffset = call.parameters["timeOffset"]?.toIntOrNull() ?: 0
+				val timeWindow = call.parameters["timeWindow"]?.toIntOrNull() ?: 120
+
 				if (crs.length != 3) {
 					return@get call.respondText("CRS must be 3 characters long.", status = HttpStatusCode.BadRequest)
 				}
 
-				val data = ldbws.getArrivalDepartureBoard(10, crs)
+				if (CRSCodes.get(crs).isValid == false) {
+					return@get call.respondText("Invalid CRS code.", status = HttpStatusCode.BadRequest)
+				}
+
+				val data = ldbws.getArrivalDepartureBoard(10, crs, filterCRS, filterType, timeOffset, timeWindow)
 				call.respond(data)
 			}
 		}

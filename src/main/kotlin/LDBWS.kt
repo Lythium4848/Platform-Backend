@@ -6,6 +6,7 @@ import kotlinx.serialization.json.decodeFromJsonElement
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import kotlin.reflect.typeOf
 
 enum class APIType {
 	ArrDep,
@@ -18,10 +19,13 @@ enum class APIType {
 
 @Serializable
 sealed class ApiResponse
+
 @Serializable
 data class SuccessResponseStationBoard(val data: StationBoardWithDetails) : ApiResponse()
+
 @Serializable
 data class SuccessResponseDeparturesBoard(val data: DeparturesBoardWithDetails) : ApiResponse()
+
 @Serializable
 data class SuccessResponseServiceDetails(val data: ServiceDetails) : ApiResponse()
 
@@ -304,8 +308,13 @@ class LDBWS(
 		val responseBody = response.body?.string()
 		response.close()
 
+		if (responseBody == "null") {
+			return ErrorResponse(Fault(FaultData("Service not found", FaultDetail("404"))))
+		}
+
 		val json = Json { ignoreUnknownKeys = true }
 		val jsonElement = json.parseToJsonElement(responseBody!!)
+
 
 		if (jsonElement is JsonObject && (jsonElement.containsKey("fault") || jsonElement.containsKey("Message"))) {
 			val jsonFormatted = json.decodeFromJsonElement<Fault>(jsonElement)

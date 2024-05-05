@@ -1,5 +1,3 @@
-import kotlinx.serialization.Serializable
-
 object CRSCodes {
 	private val codes = listOf(
 		"XPZ",

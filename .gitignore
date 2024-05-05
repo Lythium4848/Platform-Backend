@@ -43,3 +43,4 @@ bin/
 
 app.log
 .env
+./docs

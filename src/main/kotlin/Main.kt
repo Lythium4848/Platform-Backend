@@ -57,6 +57,10 @@ fun Application.module() {
 	}
 
 	routing {
+		get("/") {
+			call.respondRedirect("https://github.com/Lythium4848/Platform-Backend", permanent = false)
+		}
+
 		get("*") {
 			call.respondText("404 Not Found", status = HttpStatusCode.NotFound)
 		}

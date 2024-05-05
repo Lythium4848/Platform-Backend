@@ -1,0 +1,322 @@
+openapi: "3.1.0"
+info:
+  title: "Platform_Backend API"
+  description: "Platform_Backend API"
+  version: "1.0.0"
+servers:
+- url: "https://Platform_Backend"
+paths:
+  /:
+    get:
+      description: ""
+      responses:
+        "302":
+          description: "Found <br> Redirect"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "https://github.com/Lythium4848/Platform-Backend"
+  /*:
+    get:
+      description: ""
+      parameters:
+      - name: "*"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "404":
+          description: "Not Found"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "404 Not Found"
+  /arrival/{crs}:
+    get:
+      description: ""
+      parameters:
+      - name: "crs"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "numRows"
+        in: "query"
+        required: false
+        schema:
+          type: "integer"
+      - name: "filterCRS"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      - name: "filterType"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      - name: "timeOffset"
+        in: "query"
+        required: false
+        schema:
+          type: "integer"
+      - name: "timeWindow"
+        in: "query"
+        required: false
+        schema:
+          type: "integer"
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Invalid CRS code."
+                Example#2:
+                  value: "CRS must be 3 characters long."
+                Example#3:
+                  value: "numRows not supplied."
+                Example#4:
+                  value: "CRS not supplied. Please specify a CRS"
+        "500":
+          description: "Internal Server Error"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+  /arrivaldeparture/{crs}:
+    get:
+      description: ""
+      parameters:
+      - name: "crs"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "filterCRS"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      - name: "filterType"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      - name: "timeOffset"
+        in: "query"
+        required: false
+        schema:
+          type: "integer"
+      - name: "timeWindow"
+        in: "query"
+        required: false
+        schema:
+          type: "integer"
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Invalid CRS code."
+                Example#2:
+                  value: "CRS must be 3 characters long."
+                Example#3:
+                  value: "CRS not supplied. Please specify a CRS"
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+  /departure/{crs}:
+    get:
+      description: ""
+      parameters:
+      - name: "crs"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "filterCRS"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      - name: "filterType"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      - name: "timeOffset"
+        in: "query"
+        required: false
+        schema:
+          type: "integer"
+      - name: "timeWindow"
+        in: "query"
+        required: false
+        schema:
+          type: "integer"
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Invalid CRS code."
+                Example#2:
+                  value: "CRS must be 3 characters long."
+                Example#3:
+                  value: "CRS not supplied. Please specify a CRS"
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+  /fastestdeparture/{crs}:
+    get:
+      description: ""
+      parameters:
+      - name: "crs"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "filterList"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      - name: "timeOffset"
+        in: "query"
+        required: false
+        schema:
+          type: "integer"
+      - name: "timeWindow"
+        in: "query"
+        required: false
+        schema:
+          type: "integer"
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Invalid CRS code."
+                Example#2:
+                  value: "CRS must be 3 characters long."
+                Example#3:
+                  value: "Filter list not supplied. Please specify a filter list"
+                Example#4:
+                  value: "CRS not supplied. Please specify a CRS"
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+  /nextdeparture/{crs}:
+    get:
+      description: ""
+      parameters:
+      - name: "crs"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "filterList"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      - name: "timeOffset"
+        in: "query"
+        required: false
+        schema:
+          type: "integer"
+      - name: "timeWindow"
+        in: "query"
+        required: false
+        schema:
+          type: "integer"
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Invalid CRS code."
+                Example#2:
+                  value: "CRS must be 3 characters long."
+                Example#3:
+                  value: "Filter list not supplied. Please specify a filter list"
+                Example#4:
+                  value: "CRS not supplied. Please specify a CRS"
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+  /servicedetails/{serviceID}:
+    get:
+      description: ""
+      parameters:
+      - name: "serviceID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "serviceID not supplied. Please specify a serviceID"
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+components:
+  schemas:
+    ApiResponse:
+      type: "object"
+      properties: {}

@@ -8,6 +8,7 @@ import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.cors.routing.*
+import io.ktor.server.plugins.openapi.*
 import io.ktor.server.plugins.ratelimit.*
 import io.ktor.server.resources.*
 import io.ktor.server.response.*
@@ -57,6 +58,9 @@ fun Application.module() {
 	}
 
 	routing {
+		openAPI(path = "openapi", swaggerFile = "openapi/documentation.yaml")
+
+
 		get("/") {
 			call.respondRedirect("https://github.com/Lythium4848/Platform-Backend", permanent = false)
 		}

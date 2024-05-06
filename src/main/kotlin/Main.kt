@@ -75,5 +75,6 @@ fun Application.module() {
 		fastestDeparture()
 		nextDeparture()
 		serviceDetails()
+		stations()
 	}
 }
